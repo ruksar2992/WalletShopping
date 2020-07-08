@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.walletshopping.dto.OrderHistoryListDto;
@@ -20,6 +21,13 @@ public class OrderHistoryController {
 	public ResponseEntity<OrderHistoryListDto> getOrderHistoryByUserId(@PathVariable int userId) 
 	{
 		OrderHistoryListDto orderHistoryDetailsList=orderHistoryService.getOrderHistory(userId);	
+        return new ResponseEntity<>(orderHistoryDetailsList, HttpStatus.OK);
+	}
+	
+	@GetMapping("/users/{userId}/orders")
+	public ResponseEntity<OrderHistoryListDto> getOrderHistoryByUserIdAndMonth(@RequestParam("month") int month, @PathVariable int userId) 
+	{
+		OrderHistoryListDto orderHistoryDetailsList=orderHistoryService.getOrderHistoryByMonth(userId, month);	
         return new ResponseEntity<>(orderHistoryDetailsList, HttpStatus.OK);
 	}
 }

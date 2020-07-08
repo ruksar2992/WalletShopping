@@ -7,5 +7,8 @@ public interface OrderHistoryService {
 
 	OrderHistoryListDto getOrderHistory(int userId);
 
+	OrderHistoryListDto getOrderHistoryByMonth(int userId, int month);
+
+
 
 }
