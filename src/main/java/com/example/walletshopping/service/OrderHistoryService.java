@@ -6,6 +6,6 @@ import com.example.walletshopping.dto.OrderHistoryDto;
 
 public interface OrderHistoryService {
 
-	List<OrderHistoryDto> getOrderHistoryByUserId(int userId);
+	public List<OrderHistoryDto> getOrderHistoryByUserId(int userId);
 
 }

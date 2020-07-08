@@ -11,16 +11,13 @@ import com.example.walletshopping.dto.OrderHistoryDto;
 import com.example.walletshopping.service.OrderHistoryService;
 
 @RestController
-public class OrderHistory {
+public class OrderHistoryController {
 	@Autowired
 	OrderHistoryService orderHistoryService;
-	
 	
 	@GetMapping("/users/{userId}/orders")
 	public List<OrderHistoryDto> getOrderHistoryByUserId(@PathVariable int userId) 
 	{
 		return orderHistoryService.getOrderHistoryByUserId(userId);	
 	}
-
-
 }
