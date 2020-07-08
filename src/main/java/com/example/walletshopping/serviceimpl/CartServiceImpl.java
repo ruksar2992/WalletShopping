@@ -92,9 +92,9 @@ CartDetailsListResponseDto.setMessage("please find list of products to be order"
 		if(cart.isPresent())
 		{
 			cart.get().setStatusType(StatusType.ORDERED);
+			cartDao.save(cart.get());
 
 		}
-		cartDao.save(cart.get());
 		
 	}
 

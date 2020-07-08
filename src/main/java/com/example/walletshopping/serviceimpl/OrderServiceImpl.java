@@ -59,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
 
 			int productQuantity = cartProductList.get().getQuantity();
 			Optional<Product> cartPoduct = productDao.findById(cartProductList.get().getProductId());
-			Product product = null;
+			Product product = new Product();
 			if (cartPoduct.isPresent())
 				product = cartPoduct.get();
 			double price = (product.getProductprice()) * productQuantity;
