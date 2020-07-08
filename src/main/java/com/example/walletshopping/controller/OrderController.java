@@ -1,5 +1,7 @@
 package com.example.walletshopping.controller;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +16,23 @@ import com.example.walletshopping.service.OrderService;
 
 @RestController
 public class OrderController {
+	
+	private static Log logger = LogFactory.getLog(ProductController.class);
+
 	@Autowired
 	OrderService orderService;
 	
+	/**
+	 * @param userId
+	 * @param orderRequestDto
+	 * @return
+	 */
 	@PostMapping("/users/{userId}/orders")
 	public ResponseEntity<OrderResponseDto> orderProduts(@PathVariable("userId") int userId,
 			@RequestBody OrderRequestDto orderRequestDto) {
+		logger.info("dispalying ordering products");
+		
+
 
 		OrderResponseDto orderResponseDto = orderService.orderProductByUserId(userId,orderRequestDto);
 
