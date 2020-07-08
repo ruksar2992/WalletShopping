@@ -1,13 +1,16 @@
 package com.example.walletshopping.dto;
 
+import java.util.List;
+
 public class OrderRequestDto {
-	private int cartId;
+	private List<Integer> cartIdLists;
 	private int walletId;
-	public int getCartId() {
-		return cartId;
+	
+	public List<Integer> getCartIdLists() {
+		return cartIdLists;
 	}
-	public void setCartId(int cartId) {
-		this.cartId = cartId;
+	public void setCartIdLists(List<Integer> cartIdLists) {
+		this.cartIdLists = cartIdLists;
 	}
 	public int getWalletId() {
 		return walletId;
@@ -15,6 +18,8 @@ public class OrderRequestDto {
 	public void setWalletId(int walletId) {
 		this.walletId = walletId;
 	}
+	
+
 
 
 }

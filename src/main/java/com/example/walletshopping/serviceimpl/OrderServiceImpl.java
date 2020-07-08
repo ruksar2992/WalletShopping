@@ -49,38 +49,45 @@ public class OrderServiceImpl implements OrderService {
 
 		Orders order = new Orders();
 		OrderResponseDto orderResponseDto = new OrderResponseDto();
-		Optional<Cart> cartProductList = cartDao.findAllByCartId(orderRequestDto.getCartId());
-		if (!cartProductList.isPresent()) {
+		double totalPrice = 0;
+		for (int cartId : orderRequestDto.getCartIdLists()) {
 
-			throw new InvalidCredentialsException("Ivalid User Credentials!.Check UserId");
-		}
-		int productQuantity = cartProductList.get().getQuantity();
-		Optional<Product> cartPoductList1 = productDao.findAllByProductId(cartProductList.get().getProductId());
-		double totalPrice = (cartPoductList1.get().getProductprice()) * productQuantity;
-		Wallet wallet = walletDao.findAllByWalletId(orderRequestDto.getWalletId());
-		if (totalPrice < wallet.getWalletPoints()) {
-			order.setUserId(userId);
-			order.setProductId(cartProductList.get().getProductId());
-			order.setWalletId(orderRequestDto.getWalletId());
-			order.setOrderDate(LocalDate.now());
-			order.setTotalAmount(totalPrice);
-			orderDao.save(order);
-			cartServiceImpl.updateProductStatus(cartProductList.get().getCartId());
-			
-			double amount = wallet.getWalletPoints() - totalPrice;
-			wallet.setWalletPoints(amount);
-			walletDao.save(wallet);
-			
-			orderResponseDto.setMessage("ProductOrderSuccessfully");
-			orderResponseDto.setProductName(cartPoductList1.get().getProductName());
-			orderResponseDto.setOrderdate(LocalDate.now());
-			orderResponseDto.setTotalAmount(totalPrice);
-			orderResponseDto.setStatusCode(HttpStatus.OK.value());
-			return orderResponseDto;
+			Optional<Cart> cartProductList = cartDao.findById(cartId);
+			if (!cartProductList.isPresent()) {
 
-		} else {
-			throw new InvalidWalletPoints("insufficient wallet points");
+				throw new InvalidCredentialsException("Ivalid User Credentials!.Check UserId");
+			}
+
+			int productQuantity = cartProductList.get().getQuantity();
+			Optional<Product> cartPoduct = productDao.findById(cartProductList.get().getProductId());
+			double price = (cartPoduct.get().getProductprice()) * productQuantity;
+			Wallet wallet = walletDao.findAllByWalletId(orderRequestDto.getWalletId());
+			if (price < wallet.getWalletPoints()) {
+				order.setUserId(userId);
+				order.setProductId(cartProductList.get().getProductId());
+				order.setWalletId(orderRequestDto.getWalletId());
+				order.setOrderDate(LocalDate.now());
+				order.setTotalAmount(price);
+				orderDao.save(order);
+
+				cartServiceImpl.updateProductStatus(cartProductList.get().getCartId());
+
+				double amount = wallet.getWalletPoints() - price;
+				wallet.setWalletPoints(amount);
+				walletDao.save(wallet);
+
+			} else {
+				throw new InvalidWalletPoints("insufficient wallet points");
+
+			}
+			totalPrice = totalPrice + price;
 		}
+
+		orderResponseDto.setMessage("ProductOrderSuccessfully");
+		orderResponseDto.setOrderdate(LocalDate.now());
+		orderResponseDto.setTotalAmount(totalPrice);
+		orderResponseDto.setStatusCode(HttpStatus.OK.value());
+		return orderResponseDto;
 
 	}
 

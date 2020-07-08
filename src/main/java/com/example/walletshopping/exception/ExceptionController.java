@@ -46,20 +46,8 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
  
 
     }
+	}
 
- 
 
-	/*
-	 * @Override protected ResponseEntity<Object>
-	 * handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders
-	 * headers, HttpStatus status, WebRequest request) { ErrorResponse errorResponse
-	 * = new ErrorResponse();
-	 * errorResponse.setStatusCode(HttpStatus.BAD_REQUEST.value()); String allErrors
-	 * = ex.getBindingResult().getFieldErrors().stream().map(e ->
-	 * e.getDefaultMessage()) .collect(Collectors.joining(","));
-	 * errorResponse.setMessage(allErrors); return new
-	 * ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST); }
-	 */
-}
 
 

@@ -88,9 +88,9 @@ CartDetailsListResponseDto.setMessage("please find list of products to be order"
     }
 
 	public void updateProductStatus(int cartId) {
-		Cart cart = cartDao.findByCartId(cartId);
-		cart.setStatusType(StatusType.ORDERED);
-		cartDao.save(cart);
+		Optional<Cart> cart = cartDao.findById(cartId);
+		cart.get().setStatusType(StatusType.ORDERED);
+		cartDao.save(cart.get());
 		
 	}
 
