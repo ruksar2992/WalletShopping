@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import com.example.walletshopping.dao.ProductDao;
 import com.example.walletshopping.dto.ProductListResponseDto;
 import com.example.walletshopping.dto.ProductResponseDto;
-import com.example.walletshopping.enumpack.StatusType;
 import com.example.walletshopping.exception.ProductNotFountException;
 import com.example.walletshopping.model.Product;
 import com.example.walletshopping.service.ProductService;
