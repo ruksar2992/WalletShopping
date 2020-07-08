@@ -13,6 +13,8 @@ import com.example.walletshopping.model.Product;
 public interface ProductDao extends CrudRepository<Product, Integer> {
 
 	 Optional<List<Product>> findAllByProductName(String productName);
+
+	Optional<Product> findAllByProductId(int productId);
 		
 	
 	

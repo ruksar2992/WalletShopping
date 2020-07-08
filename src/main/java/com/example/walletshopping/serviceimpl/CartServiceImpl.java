@@ -56,7 +56,7 @@ public class CartServiceImpl implements CartService {
 		cart.setUserId(userId);
 		cart.setProductId(cartRequestDto.getProductId());
 		cart.setQuantity(cartRequestDto.getQuantity());
-		cart.setStatusType(StatusType.AVAILABLE);
+		cart.setStatusType(StatusType.INCART);
 		cartDao.save(cart);
 		return cart;
 
@@ -71,8 +71,8 @@ if (!cartProductList.isPresent()) {
         	throw new InvalidCredentialsException("Ivalid User Credentials!.Check UserId");
 		}
       
-         List<CartListResponseDto> productList= cartProductList.get().stream().map(cart -> getProductDetails(cart)).collect(Collectors.toList());
-         CartDetailsListResponseDto.setMessage("please find list of products to be order");
+List<CartListResponseDto> productList= cartProductList.get().stream().filter(cart-> (cart.getStatusType().equals(StatusType.INCART))).map(cart -> getProductDetails(cart)).collect(Collectors.toList());  
+CartDetailsListResponseDto.setMessage("please find list of products to be order");
          CartDetailsListResponseDto.setStatusCode(HttpStatus.OK.value());
          CartDetailsListResponseDto.setCartListResponseDto(productList);
 			return CartDetailsListResponseDto;
@@ -86,5 +86,12 @@ if (!cartProductList.isPresent()) {
         BeanUtils.copyProperties(cart, cartListResponseDto);
         return cartListResponseDto;
     }
+
+	public void updateProductStatus(int cartId) {
+		Cart cart = cartDao.findByCartId(cartId);
+		cart.setStatusType(StatusType.ORDERED);
+		cartDao.save(cart);
+		
+	}
 
 }

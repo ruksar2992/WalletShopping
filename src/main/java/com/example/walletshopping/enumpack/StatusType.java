@@ -1,6 +1,6 @@
 package com.example.walletshopping.enumpack;
 
 public enum StatusType {
-	ORDERED,AVAILABLE;
+	ORDERED,INCART;
 
 }

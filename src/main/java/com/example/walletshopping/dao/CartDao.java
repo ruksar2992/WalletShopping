@@ -15,4 +15,9 @@ public interface CartDao extends CrudRepository<Cart, Integer>{
 
 	Optional<List<Cart>> findAllByUserId(int userId);
 
+	Optional<Cart> findAllByCartId(int cartId);
+	
+	Cart findByCartId(int cartId);
+
+
 }

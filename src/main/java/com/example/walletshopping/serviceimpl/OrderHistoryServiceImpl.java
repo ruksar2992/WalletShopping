@@ -21,7 +21,7 @@ public class OrderHistoryServiceImpl implements OrderHistoryService{
 	public OrderHistoryListDto getOrderHistory(int userId) {
 		
 		OrderHistoryListDto orderHistoryListDto = new OrderHistoryListDto();
-	        Optional<List<Orders>> cartProductList = cartDao.findAllByUserId(userId);
+	        Optional<List<Orders>> cartProductList = ODao.findAllByUserId(userId);
 	if (!cartProductList.isPresent()) {
 	           
 	            throw new InvalidCredentialsException("Ivalid User Credentials!.Check UserId");
