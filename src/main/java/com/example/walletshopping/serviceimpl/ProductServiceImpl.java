@@ -28,22 +28,22 @@ public class ProductServiceImpl implements ProductService {
 	Log logger = LogFactory.getLog(ProductServiceImpl.class);
 
 	@Autowired
-	ProductDao ProductDao;
+	ProductDao productDao;
 
 	@Override
 	public ProductListResponseDto getProductByProductName(String productName) throws ProductNotFountException {
 		logger.info(" Enter correct ProductName");
 
 		ProductListResponseDto productListResponseDto = new ProductListResponseDto();
-		Optional<List<Product>> productDetails = ProductDao.findAllByProductName(productName);
+		Optional<List<Product>> productDetails = productDao.findAllByProductName(productName);
 		if (!productDetails.isPresent()) {
 
 			throw new ProductNotFountException(" your request are notFound");
 		}
 
 		List<ProductResponseDto> productList = productDetails.get().stream()
-				.map(Product -> getProductDetailsResponseDto(Product)).collect(Collectors.toList());
-		productListResponseDto.setMessage(" available pets");
+				.map(P-> getProductDetailsResponseDto(P)).collect(Collectors.toList());
+		productListResponseDto.setMessage(" available products");
 		productListResponseDto.setStatusCode(HttpStatus.OK.value());
 		productListResponseDto.setProductResponse(productList);
 		return productListResponseDto;

@@ -1,4 +1,4 @@
-package com.example.walletshopping.controller;
+package com.example.walletshopping.controllertest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.example.walletshopping.controller.ProductController;
 import com.example.walletshopping.dto.ProductListResponseDto;
 import com.example.walletshopping.dto.ProductResponseDto;
 import com.example.walletshopping.exception.ProductNotFountException;
@@ -21,7 +22,6 @@ import com.example.walletshopping.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ExtendWith(MockitoExtension.class)
-
 public class ProductControllerTest {
 
 	@InjectMocks
@@ -42,7 +42,7 @@ public class ProductControllerTest {
 	    }
 
 	@Test
-	public void findDogDetails() throws ProductNotFountException {
+	public void findproductDetails() throws ProductNotFountException {
 
 		ProductResponseDto products = new ProductResponseDto();
 		products.setProductId(1);
