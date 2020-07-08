@@ -26,8 +26,8 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfo("PetStore", "PetStore for Users RESTful api documentation",
-				"1", "terms", new Contact("Ruksar", "www.PetStore.com", "support@library.com"),
+		return new ApiInfo("WalletShopping", "WalletShopping for Users RESTful api documentation",
+				"1", "terms", new Contact("Sparks", "www.WalletShopping.com", "support@library.com"),
 				"license number", "lecence url",
 
 				Collections.emptyList());
