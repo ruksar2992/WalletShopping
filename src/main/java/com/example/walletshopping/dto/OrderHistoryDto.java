@@ -6,9 +6,8 @@ public class OrderHistoryDto {
 
        private int orderId;
        private int productId ;
-       private String productName ;
-       private double price;
-       private LocalDate orderDate;
+       private double totalAmount;
+       private LocalDate orderDate ;
        
        
        
@@ -24,17 +23,11 @@ public class OrderHistoryDto {
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
-	public String getProductName() {
-		return productName;
+	public double getTotalAmount() {
+		return totalAmount;
 	}
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(double price) {
-		this.price = price;
+	public void setTotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 	public LocalDate getOrderDate() {
 		return orderDate;
@@ -44,4 +37,14 @@ public class OrderHistoryDto {
 	}
        
        
+       
+       
+       
 }
+       
+       
+       
+       
+       
+	
+	
