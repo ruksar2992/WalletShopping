@@ -56,4 +56,6 @@ public class ProductServiceImpl implements ProductService {
 		BeanUtils.copyProperties(product, productDetailsResponse);
 		return productDetailsResponse;
 	}
+
+	
 }

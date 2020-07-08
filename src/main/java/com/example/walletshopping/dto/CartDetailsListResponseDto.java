@@ -6,7 +6,7 @@ import java.util.List;
 public class CartDetailsListResponseDto {
 	private String message;
 	private int statusCode;
-	List<CartListResponseDto> CartListResponseDto;
+	List<CartListResponseDto> cartListResponseDto;
 
 	public String getMessage() {
 		return message;
@@ -21,10 +21,10 @@ public class CartDetailsListResponseDto {
 		this.statusCode = statusCode;
 	}
 	public List<CartListResponseDto> getCartListResponseDto() {
-		return CartListResponseDto;
+		return cartListResponseDto;
 	}
 	public void setCartListResponseDto(List<CartListResponseDto> cartListResponseDto) {
-		CartListResponseDto = cartListResponseDto;
+		this.cartListResponseDto = cartListResponseDto;
 	}
 	
 }

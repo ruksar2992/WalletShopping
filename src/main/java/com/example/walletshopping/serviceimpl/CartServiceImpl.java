@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-
 import com.example.walletshopping.dao.CartDao;
 import com.example.walletshopping.dao.UserDao;
 import com.example.walletshopping.dto.CartDetailsListResponseDto;
@@ -37,17 +36,17 @@ public class CartServiceImpl implements CartService {
 			throw new InvalidCredentialsException("UserId is not valid,Enter correct one");
 		}
 
-		 List<Cart> cartList= cartRequestDtoList.stream()
-				.map(cartRequestDto -> addToCart(cartRequestDto, userId)).collect(Collectors.toList());
-		 if(cartList!=null) {
-		cartResponseDto.setMessage("Product successfully added in to cart");
-		cartResponseDto.setStatuscode(HttpStatus.OK.value());
-		return cartResponseDto;
-
-	}
-		 cartResponseDto.setMessage("Product not added in to cart");
-			cartResponseDto.setStatuscode(HttpStatus.BAD_REQUEST.value());
+		List<Cart> cartList = cartRequestDtoList.stream().map(cartRequestDto -> addToCart(cartRequestDto, userId))
+				.collect(Collectors.toList());
+		if (cartList != null) {
+			cartResponseDto.setMessage("Product successfully added in to cart");
+			cartResponseDto.setStatuscode(HttpStatus.OK.value());
 			return cartResponseDto;
+
+		}
+		cartResponseDto.setMessage("Product not added in to cart");
+		cartResponseDto.setStatuscode(HttpStatus.BAD_REQUEST.value());
+		return cartResponseDto;
 	}
 
 	private Cart addToCart(CartRequestDto cartRequestDto, int userId) {
@@ -56,7 +55,7 @@ public class CartServiceImpl implements CartService {
 		cart.setUserId(userId);
 		cart.setProductId(cartRequestDto.getProductId());
 		cart.setQuantity(cartRequestDto.getQuantity());
-		cart.setStatusType(StatusType.AVAILABLE);
+		cart.setStatusType(StatusType.INCART);
 		cartDao.save(cart);
 		return cart;
 
@@ -64,27 +63,35 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public CartDetailsListResponseDto getProductsFromCart(int userId) {
-		CartDetailsListResponseDto CartDetailsListResponseDto = new CartDetailsListResponseDto();
+		CartDetailsListResponseDto cartDetailsListResponseDto = new CartDetailsListResponseDto();
 		Optional<List<Cart>> cartProductList = cartDao.findAllByUserId(userId);
-if (!cartProductList.isPresent()) {
-			
-        	throw new InvalidCredentialsException("Ivalid User Credentials!.Check UserId");
+		if (!cartProductList.isPresent()) {
+
+			throw new InvalidCredentialsException("Ivalid User Credentials!.Check UserId");
 		}
-      
-         List<CartListResponseDto> productList= cartProductList.get().stream().map(cart -> getProductDetails(cart)).collect(Collectors.toList());
-         CartDetailsListResponseDto.setMessage("please find list of products to be order");
-         CartDetailsListResponseDto.setStatusCode(HttpStatus.OK.value());
-         CartDetailsListResponseDto.setCartListResponseDto(productList);
-			return CartDetailsListResponseDto;
-            
-       
-         
-    }
-    private CartListResponseDto getProductDetails(Cart cart) {
-        
-    	CartListResponseDto cartListResponseDto=new CartListResponseDto();
-        BeanUtils.copyProperties(cart, cartListResponseDto);
-        return cartListResponseDto;
-    }
+
+		List<CartListResponseDto> productList = cartProductList.get().stream()
+				.filter(cart -> (cart.getStatusType().equals(StatusType.INCART))).map(cart -> getProductDetails(cart))
+				.collect(Collectors.toList());
+		cartDetailsListResponseDto.setMessage("please find list of products to be order");
+		cartDetailsListResponseDto.setStatusCode(HttpStatus.OK.value());
+		cartDetailsListResponseDto.setCartListResponseDto(productList);
+		return cartDetailsListResponseDto;
+
+	}
+
+	private CartListResponseDto getProductDetails(Cart cart) {
+
+		CartListResponseDto cartListResponseDto = new CartListResponseDto();
+		BeanUtils.copyProperties(cart, cartListResponseDto);
+		return cartListResponseDto;
+	}
+
+	public void updateProductStatus(int cartId) {
+		Cart cart = cartDao.findByCartId(cartId);
+		cart.setStatusType(StatusType.ORDERED);
+		cartDao.save(cart);
+
+	}
 
 }
