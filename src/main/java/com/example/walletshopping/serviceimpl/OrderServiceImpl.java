@@ -59,7 +59,10 @@ public class OrderServiceImpl implements OrderService {
 
 			int productQuantity = cartProductList.get().getQuantity();
 			Optional<Product> cartPoduct = productDao.findById(cartProductList.get().getProductId());
-			double price = (cartPoduct.get().getProductprice()) * productQuantity;
+			Product product = null;
+			if (cartPoduct.isPresent())
+				product = cartPoduct.get();
+			double price = (product.getProductprice()) * productQuantity;
 			Wallet wallet = walletDao.findAllByWalletId(orderRequestDto.getWalletId());
 			if (price < wallet.getWalletPoints()) {
 				order.setUserId(userId);
