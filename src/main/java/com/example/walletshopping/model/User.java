@@ -4,7 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "user")
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class User {
 
@@ -15,7 +20,6 @@ public class User {
 	private String password;
 	private String emailId;
 	private String mobilenumber;
-	
 
 	public String getMobilenumber() {
 		return mobilenumber;
@@ -32,7 +36,6 @@ public class User {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-
 
 	public int getUserId() {
 		return userId;
@@ -57,9 +60,5 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	
-
-	
 
 }
