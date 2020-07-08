@@ -3,11 +3,15 @@ package com.example.walletshopping.model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Order {
+public class Orders {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	private int orderId;
 	private int productId;
 	private int walletId;
