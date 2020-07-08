@@ -33,12 +33,12 @@ public class OrderHistoryServiceImpl implements OrderHistoryService {
 			throw new InvalidCredentialsException("Invalid User Credentials!.Check UserId");
 		}
 
-		List<OrderHistoryDto> OrderList = cartProductList.get().stream()
+		List<OrderHistoryDto> orderList = cartProductList.get().stream()
 				.filter(orders -> (orders.getOrderDate().isEqual(LocalDate.now())))
 				.map(orders -> getProductListDetails(orders)).collect(Collectors.toList());
 		orderHistoryListDto.setMessage("please find list of orders");
 		orderHistoryListDto.setStatusCode(HttpStatus.OK.value());
-		orderHistoryListDto.setOrderHistoryDto(OrderList);
+		orderHistoryListDto.setOrderHistoryDto(orderList);
 		return orderHistoryListDto;
 
 	}

@@ -28,7 +28,7 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(value = OrderNotFoundException.class)
 	public ResponseEntity<ErrorResponse> exceptionHandler(OrderNotFoundException orderNotFountException) {
 		ErrorResponse errorResponse = new ErrorResponse();
-		errorResponse.setStatusCode(ApplicationConstants.Orders_NOT_FOUND_CODE);
+		errorResponse.setStatusCode(ApplicationConstants.ORDERS_NOT_FOUND_CODE);
 		errorResponse.setMessage(ApplicationConstants.ORDERS_NOT_FOUND);
 		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 

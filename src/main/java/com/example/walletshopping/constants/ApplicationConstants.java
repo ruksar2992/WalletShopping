@@ -9,7 +9,7 @@ public class ApplicationConstants {
 	public static final Integer PRODUCT_NOT_FOUND_CODE = 601;
 	
 	public static final String ORDERS_NOT_FOUND = "No orders found !!";
-	public static final Integer Orders_NOT_FOUND_CODE = 602;
+	public static final Integer ORDERS_NOT_FOUND_CODE = 602;
 	
 	
 	

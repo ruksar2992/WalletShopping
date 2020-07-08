@@ -38,7 +38,7 @@ public class OrderController {
 		OrderResponseDto orderResponseDto = orderService.orderProductByUserId(userId,orderRequestDto);
 
 
-		        return new ResponseEntity<OrderResponseDto>(orderResponseDto, HttpStatus.OK);
+		        return new ResponseEntity<>(orderResponseDto, HttpStatus.OK);
 
 
 		    }

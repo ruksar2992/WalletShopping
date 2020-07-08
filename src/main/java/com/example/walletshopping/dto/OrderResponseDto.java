@@ -3,19 +3,12 @@ package com.example.walletshopping.dto;
 import java.time.LocalDate;
 
 public class OrderResponseDto {
-	private String productName;
 	private double totalAmount;
-	private LocalDate Orderdate;
+	private LocalDate orderdate;
 	private String message;
 	private int statusCode;
 
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
+	
 
 	public double getTotalAmount() {
 		return totalAmount;
@@ -27,12 +20,14 @@ public class OrderResponseDto {
 
 	
 
+	
+
 	public LocalDate getOrderdate() {
-		return Orderdate;
+		return orderdate;
 	}
 
 	public void setOrderdate(LocalDate orderdate) {
-		Orderdate = orderdate;
+		this.orderdate = orderdate;
 	}
 
 	public String getMessage() {
