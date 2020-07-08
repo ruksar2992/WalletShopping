@@ -1,11 +1,15 @@
 package com.example.walletshopping.service;
 
 import com.example.walletshopping.dto.ProductListResponseDto;
-import com.example.walletshopping.exception.InvalidCredentialsException;
+import com.example.walletshopping.exception.ProductNotFountException;
 
+/**
+ * @author hemas
+ *
+ */
 public interface ProductService {
 
 	
-	ProductListResponseDto getProductByProductName(String productName) throws InvalidCredentialsException ;
+	ProductListResponseDto getProductByProductName(String productName) throws ProductNotFountException ;
 
 }

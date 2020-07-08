@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import com.example.walletshopping.model.Product;
 
+/**
+ * @author hemas
+ *
+ */
 @Repository
 public interface ProductDao extends CrudRepository<Product, Integer> {
 

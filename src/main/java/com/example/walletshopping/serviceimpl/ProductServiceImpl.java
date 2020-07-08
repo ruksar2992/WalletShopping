@@ -14,10 +14,14 @@ import org.springframework.stereotype.Service;
 import com.example.walletshopping.dao.ProductDao;
 import com.example.walletshopping.dto.ProductListResponseDto;
 import com.example.walletshopping.dto.ProductResponseDto;
-import com.example.walletshopping.exception.InvalidCredentialsException;
+import com.example.walletshopping.exception.ProductNotFountException;
 import com.example.walletshopping.model.Product;
 import com.example.walletshopping.service.ProductService;
 
+/**
+ * @author hemas
+ *
+ */
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -27,14 +31,14 @@ public class ProductServiceImpl implements ProductService {
 	ProductDao ProductDao;
 
 	@Override
-	public ProductListResponseDto getProductByProductName(String productName) throws InvalidCredentialsException {
+	public ProductListResponseDto getProductByProductName(String productName) throws ProductNotFountException {
 		logger.info(" Enter correct ProductName");
 
 		ProductListResponseDto productListResponseDto = new ProductListResponseDto();
 		Optional<List<Product>> productDetails = ProductDao.findAllByProductName(productName);
 		if (!productDetails.isPresent()) {
 
-			throw new InvalidCredentialsException(" your request are notFound");
+			throw new ProductNotFountException(" your request are notFound");
 		}
 
 		List<ProductResponseDto> productList = productDetails.get().stream()
