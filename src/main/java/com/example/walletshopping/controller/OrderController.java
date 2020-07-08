@@ -1,5 +1,6 @@
 package com.example.walletshopping.controller;
 
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import com.example.walletshopping.service.OrderService;
 @RestController
 public class OrderController {
 	
-	private static Log logger = LogFactory.getLog(ProductController.class);
+	private static Log logger = LogFactory.getLog(OrderController.class);
 
 	@Autowired
 	OrderService orderService;

@@ -1,5 +1,7 @@
 package com.example.walletshopping.exception;
 
+
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -31,7 +33,33 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 
 	}
+	@ExceptionHandler(value = InvalidCredentialsException.class)
+    public ResponseEntity<ErrorResponse> exceptionHandler(InvalidCredentialsException invalidCredentialsException) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setStatusCode(HttpStatus.UNAUTHORIZED.value());
+        errorResponse.setMessage(invalidCredentialsException.getMessage());
 
+ 
 
-	
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+
+ 
+
+    }
+
+ 
+
+	/*
+	 * @Override protected ResponseEntity<Object>
+	 * handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders
+	 * headers, HttpStatus status, WebRequest request) { ErrorResponse errorResponse
+	 * = new ErrorResponse();
+	 * errorResponse.setStatusCode(HttpStatus.BAD_REQUEST.value()); String allErrors
+	 * = ex.getBindingResult().getFieldErrors().stream().map(e ->
+	 * e.getDefaultMessage()) .collect(Collectors.joining(","));
+	 * errorResponse.setMessage(allErrors); return new
+	 * ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST); }
+	 */
 }
+
+
