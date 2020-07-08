@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.example.walletshopping.dto.ProductListResponseDto;
 import com.example.walletshopping.dto.ProductResponseDto;
-import com.example.walletshopping.exception.InvalidCredentialsException;
+import com.example.walletshopping.exception.ProductNotFountException;
 import com.example.walletshopping.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -42,7 +42,7 @@ public class ProductControllerTest {
 	    }
 
 	@Test
-	public void findDogDetails() throws InvalidCredentialsException {
+	public void findDogDetails() throws ProductNotFountException {
 
 		ProductResponseDto products = new ProductResponseDto();
 		products.setProductId(1);

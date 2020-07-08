@@ -1,5 +1,9 @@
 package com.example.walletshopping.dto;
 
+/**
+ * @author hemas
+ *
+ */
 public class ProductResponseDto {
 
 	private int productId;

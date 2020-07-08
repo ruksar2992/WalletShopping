@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.walletshopping.dto.ProductListResponseDto;
-import com.example.walletshopping.exception.InvalidCredentialsException;
+import com.example.walletshopping.exception.ProductNotFountException;
 import com.example.walletshopping.service.ProductService;
 
+/**
+ * @author hemas
+ *
+ */
 @RestController
 public class ProductController {
 
@@ -20,9 +24,14 @@ public class ProductController {
 	ProductService productService;
 	private static Log logger = LogFactory.getLog(ProductController.class);
 
+	/**
+	 * @param productName
+	 * @return
+	 * @throws ProductNotFountException
+	 */
 	@GetMapping("/product")
 	public ResponseEntity<ProductListResponseDto> searchProducts(@RequestParam("productName") String productName)
-			throws InvalidCredentialsException {
+			throws ProductNotFountException {
 		logger.info("dispalying list of products");
 
 		ProductListResponseDto productDetailsResponse = productService.getProductByProductName(productName);

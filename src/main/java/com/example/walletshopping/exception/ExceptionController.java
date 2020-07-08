@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.example.walletshopping.constants.ApplicationConstants;
+
 /**
  * @author hemas
  *
@@ -13,13 +15,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ExceptionController extends ResponseEntityExceptionHandler {
 
-	@ExceptionHandler(value = InvalidCredentialsException.class)
-	public ResponseEntity<ErrorResponse> exceptionHandler(InvalidCredentialsException invalidCredentialsException) {
+	@ExceptionHandler(value = ProductNotFountException.class)
+	public ResponseEntity<ErrorResponse> exceptionHandler(ProductNotFountException productNotFountException) {
 		ErrorResponse errorResponse = new ErrorResponse();
-		errorResponse.setStatusCode(HttpStatus.NOT_FOUND.value());
-		errorResponse.setMessage(invalidCredentialsException.getMessage());
-		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+		errorResponse.setStatusCode(ApplicationConstants.PRODUCT_NOT_FOUND_CODE);
+		errorResponse.setMessage(ApplicationConstants.PRODUCT_NOT_FOUND);
+		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 
 	}
 
+	
 }

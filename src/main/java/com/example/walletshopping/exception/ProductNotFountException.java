@@ -1,10 +1,11 @@
+
 package com.example.walletshopping.exception;
 
 /**
  * @author hemas
  *
  */
-public class InvalidCredentialsException extends Exception {
+public class ProductNotFountException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
@@ -15,7 +16,7 @@ public class InvalidCredentialsException extends Exception {
 		return message;
 	}
 
-	public InvalidCredentialsException(String message) {
+	public ProductNotFountException(String message) {
 		super(message);
 		this.message = message;
 	}
