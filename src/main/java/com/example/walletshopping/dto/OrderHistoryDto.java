@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 public class OrderHistoryDto {
 
-       int orderId;
-       int productId ;
-       String productName ;
-       double price;
-       LocalDate orderDate;
+       private int orderId;
+       private int productId ;
+       private String productName ;
+       private double price;
+       private LocalDate orderDate;
        
        
        
