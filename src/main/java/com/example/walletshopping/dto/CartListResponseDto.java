@@ -1,23 +1,11 @@
-package com.example.walletshopping.model;
-
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+package com.example.walletshopping.dto;
 
 import com.example.walletshopping.enumpack.StatusType;
 
-@Entity
-public class Cart {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+public class CartListResponseDto {
 	private int cartId;
 	private int productId;
-	private int userId;
 	private int quantity;
-	@Enumerated(EnumType.STRING)
 	private StatusType statusType;
 
 	public int getCartId() {
@@ -34,14 +22,6 @@ public class Cart {
 
 	public void setProductId(int productId) {
 		this.productId = productId;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public int getQuantity() {
