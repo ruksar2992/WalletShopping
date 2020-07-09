@@ -29,17 +29,16 @@ public class ProductControllerTest {
 
 	@Mock
 	ProductService productService;
-	
-	MockMvc mockMvc;
-    ObjectMapper objectMapper;
 
-	
-	 @BeforeEach
-	    public void setUp() {
-	        objectMapper = new ObjectMapper();
-	        mockMvc = MockMvcBuilders.standaloneSetup(productController).build();   
-	        
-	    }
+	MockMvc mockMvc;
+	ObjectMapper objectMapper;
+
+	@BeforeEach
+	public void setUp() {
+		objectMapper = new ObjectMapper();
+		mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
+
+	}
 
 	@Test
 	public void findproductDetails() throws ProductNotFountException {
@@ -51,10 +50,9 @@ public class ProductControllerTest {
 		products.setProductDescription("made in india");
 		Mockito.when(productService.getProductByProductName("productName")).thenReturn(null);
 
-		ResponseEntity<ProductListResponseDto> responsebusdetailsdto = productController.searchProducts("productName");
-		assertEquals(HttpStatus.OK, responsebusdetailsdto.getStatusCode());
+		ResponseEntity<ProductListResponseDto> responseproductdetailsdto = productController
+				.searchProducts("productName");
+		assertEquals(HttpStatus.OK, responseproductdetailsdto.getStatusCode());
 
 	}
 }
-
-

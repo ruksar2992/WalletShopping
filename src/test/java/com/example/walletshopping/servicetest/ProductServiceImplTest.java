@@ -55,31 +55,5 @@ public class ProductServiceImplTest {
 		productServiceImpl.getProductByProductName("productName");
 		verify(productDao).findAllByProductName(any(String.class));
 	}
-	/*
-	 * @Test public void getListByProductNameTest1() { ProductResponseDto
-	 * productAnimalResponse = new ProductResponseDto();
-	 * 
-	 * productAnimalResponse.setProductDescription("6 gb");
-	 * productAnimalResponse.setProductId(1);
-	 * productAnimalResponse.setProductName("mobiles");
-	 * productAnimalResponse.setProductprice(10000);
-	 * 
-	 * List<ProductResponseDto> petAnimalResponseList = new ArrayList<>();
-	 * 
-	 * petAnimalResponseList.add(productAnimalResponse);
-	 * 
-	 * Product product = new Product(); product.setProductDescription("6 gb");
-	 * product.setProductId(1); product.setProductName("mobiles");
-	 * product.setProductprice(10000);
-	 * 
-	 * List<Product> productList = new ArrayList<>(); productList.add(product);
-	 * 
-	 * ProductNotFountException exception =
-	 * assertThrows(ProductNotFountException.class, () -> {
-	 * productServiceImpl.getProductByProductName("productName"); });
-	 * 
-	 * String expectedMessage = ApplicationConstants.PRODUCT_NOT_FOUND; String
-	 * actualMessage = exception.getMessage();
-	 * assertTrue(actualMessage.contains(expectedMessage)); }
-	 */
+
 }

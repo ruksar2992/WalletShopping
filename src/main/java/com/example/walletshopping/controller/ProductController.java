@@ -13,16 +13,12 @@ import com.example.walletshopping.dto.ProductListResponseDto;
 import com.example.walletshopping.exception.ProductNotFountException;
 import com.example.walletshopping.service.ProductService;
 
-/**
- * @author hemas
- *
- */
 @RestController
 public class ProductController {
+	private static Log logger = LogFactory.getLog(ProductController.class);
 
 	@Autowired
 	ProductService productService;
-	private static Log logger = LogFactory.getLog(ProductController.class);
 
 	/**
 	 * @param productName

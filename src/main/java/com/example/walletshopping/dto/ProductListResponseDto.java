@@ -2,17 +2,12 @@ package com.example.walletshopping.dto;
 
 import java.util.List;
 
-/**
- * @author hemas
- *
- */
 public class ProductListResponseDto {
 
 	List<ProductResponseDto> productResponse;
 	private String message;
 	private int statusCode;
 
-	
 	public List<ProductResponseDto> getProductResponse() {
 		return productResponse;
 	}

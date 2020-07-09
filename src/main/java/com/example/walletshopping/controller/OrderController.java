@@ -1,6 +1,5 @@
 package com.example.walletshopping.controller;
 
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +16,12 @@ import com.example.walletshopping.service.OrderService;
 
 @RestController
 public class OrderController {
-	
+
 	private static Log logger = LogFactory.getLog(OrderController.class);
 
 	@Autowired
 	OrderService orderService;
-	
+
 	/**
 	 * @param userId
 	 * @param orderRequestDto
@@ -32,18 +31,10 @@ public class OrderController {
 	public ResponseEntity<OrderResponseDto> orderProduts(@PathVariable("userId") int userId,
 			@RequestBody OrderRequestDto orderRequestDto) {
 		logger.info("dispalying ordering products");
-		
 
+		OrderResponseDto orderResponseDto = orderService.orderProductByUserId(userId, orderRequestDto);
 
-		OrderResponseDto orderResponseDto = orderService.orderProductByUserId(userId,orderRequestDto);
+		return new ResponseEntity<>(orderResponseDto, HttpStatus.OK);
 
-
-		        return new ResponseEntity<>(orderResponseDto, HttpStatus.OK);
-
-
-		    }
+	}
 }
-
-	
-
-

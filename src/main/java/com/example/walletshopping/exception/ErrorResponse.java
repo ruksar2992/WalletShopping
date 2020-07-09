@@ -1,9 +1,5 @@
 package com.example.walletshopping.exception;
 
-/**
- * @author hemas
- *
- */
 public class ErrorResponse {
 
 	private int statusCode;

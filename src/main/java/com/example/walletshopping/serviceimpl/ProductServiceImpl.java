@@ -18,10 +18,6 @@ import com.example.walletshopping.exception.ProductNotFountException;
 import com.example.walletshopping.model.Product;
 import com.example.walletshopping.service.ProductService;
 
-/**
- * @author hemas
- *
- */
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -41,8 +37,8 @@ public class ProductServiceImpl implements ProductService {
 			throw new ProductNotFountException(" your request are notFound");
 		}
 
-		List<ProductResponseDto> productList = productDetails.get().stream()
-				.map(P-> getProductDetailsResponseDto(P)).collect(Collectors.toList());
+		List<ProductResponseDto> productList = productDetails.get().stream().map(P -> getProductDetailsResponseDto(P))
+				.collect(Collectors.toList());
 		productListResponseDto.setMessage(" available products");
 		productListResponseDto.setStatusCode(HttpStatus.OK.value());
 		productListResponseDto.setProductResponse(productList);
@@ -57,5 +53,4 @@ public class ProductServiceImpl implements ProductService {
 		return productDetailsResponse;
 	}
 
-	
 }

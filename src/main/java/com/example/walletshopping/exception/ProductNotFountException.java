@@ -1,10 +1,6 @@
 
 package com.example.walletshopping.exception;
 
-/**
- * @author hemas
- *
- */
 public class ProductNotFountException extends Exception {
 
 	private static final long serialVersionUID = 1L;

@@ -28,44 +28,44 @@ public class OrderControllerTest {
 	OrderService orderService;
 
 	@Test
-	public void bookingDetails() {
-		OrderRequestDto booking = new OrderRequestDto();
-		booking.setWalletId(1);
+	public void orderDetails1() {
+		OrderRequestDto orders = new OrderRequestDto();
+		orders.setWalletId(1);
 
-		OrderResponseDto book = new OrderResponseDto();
+		OrderResponseDto order = new OrderResponseDto();
 
-		Mockito.when(orderService.orderProductByUserId(1, booking)).thenReturn(book);
+		Mockito.when(orderService.orderProductByUserId(1, orders)).thenReturn(order);
 
-		ResponseEntity<OrderResponseDto> responsebusdetailsdto = orderController.orderProduts(1, booking);
-		assertEquals(HttpStatus.OK, responsebusdetailsdto.getStatusCode());
-
-	}
-
-	@Test
-	public void bookingDetails1() {
-		OrderRequestDto booking = new OrderRequestDto();
-		booking.setWalletId(2);
-
-		OrderResponseDto book = new OrderResponseDto();
-
-		Mockito.when(orderService.orderProductByUserId(1, booking)).thenReturn(book);
-
-		ResponseEntity<OrderResponseDto> responsebusdetailsdto = orderController.orderProduts(1, booking);
-		assertEquals(HttpStatus.OK, responsebusdetailsdto.getStatusCode());
+		ResponseEntity<OrderResponseDto> responseOrderdetailsdto = orderController.orderProduts(1, orders);
+		assertEquals(HttpStatus.OK, responseOrderdetailsdto.getStatusCode());
 
 	}
 
 	@Test
-	public void bookingDetails2() {
-		OrderRequestDto booking = new OrderRequestDto();
-		booking.setWalletId(2);
+	public void orderDetails() {
+		OrderRequestDto orders = new OrderRequestDto();
+		orders.setWalletId(2);
 
-		OrderResponseDto book = new OrderResponseDto();
+		OrderResponseDto order = new OrderResponseDto();
 
-		Mockito.when(orderService.orderProductByUserId(1, booking)).thenReturn(book);
+		Mockito.when(orderService.orderProductByUserId(1, orders)).thenReturn(order);
 
-		ResponseEntity<OrderResponseDto> responsebusdetailsdto = orderController.orderProduts(1, booking);
-		assertEquals(HttpStatus.OK, responsebusdetailsdto.getStatusCode());
+		ResponseEntity<OrderResponseDto> responseOrderdetailsdto = orderController.orderProduts(1, orders);
+		assertEquals(HttpStatus.OK, responseOrderdetailsdto.getStatusCode());
+
+	}
+
+	@Test
+	public void orderDetails2() {
+		OrderRequestDto orders = new OrderRequestDto();
+		orders.setWalletId(2);
+
+		OrderResponseDto order = new OrderResponseDto();
+
+		Mockito.when(orderService.orderProductByUserId(1, orders)).thenReturn(order);
+
+		ResponseEntity<OrderResponseDto> responseOrderdetailsdto = orderController.orderProduts(1, orders);
+		assertEquals(HttpStatus.OK, responseOrderdetailsdto.getStatusCode());
 
 	}
 

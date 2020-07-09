@@ -20,6 +20,4 @@ public class ErrorResponse {
 		this.statusCode = statusCode;
 	}
 
-	
-
 }

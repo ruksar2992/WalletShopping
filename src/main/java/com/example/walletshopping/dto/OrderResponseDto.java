@@ -8,8 +8,6 @@ public class OrderResponseDto {
 	private String message;
 	private int statusCode;
 
-	
-
 	public double getTotalAmount() {
 		return totalAmount;
 	}
@@ -17,10 +15,6 @@ public class OrderResponseDto {
 	public void setTotalAmount(double totalAmount) {
 		this.totalAmount = totalAmount;
 	}
-
-	
-
-	
 
 	public LocalDate getOrderdate() {
 		return orderdate;

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,8 @@ import com.example.walletshopping.service.CartService;
 
 @Service
 public class CartServiceImpl implements CartService {
+	private static Log logger = LogFactory.getLog(CartServiceImpl.class);
+
 	@Autowired
 	UserDao userDao;
 	@Autowired
@@ -30,6 +34,8 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public CartResponseDto addingProductsToCart(int userId, List<CartRequestDto> cartRequestDtoList) {
+		logger.info("Adding list of products to cart");
+
 		CartResponseDto cartResponseDto = new CartResponseDto();
 		Optional<User> user = userDao.findAllByUserId(userId);
 		if (!user.isPresent()) {
@@ -63,6 +69,8 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public CartDetailsListResponseDto getProductsFromCart(int userId) {
+		logger.info("displaying list of ordres in cart");
+
 		CartDetailsListResponseDto cartDetailsListResponseDto = new CartDetailsListResponseDto();
 		Optional<List<Cart>> cartProductList = cartDao.findAllByUserId(userId);
 		if (!cartProductList.isPresent()) {
