@@ -51,4 +51,5 @@ public class CartServiceImplTest {
 		cartServiceImpl.getProductsFromCart(1);
 		verify(cartDao).findAllByUserId(any(int.class));
 	}
+
 }
